@@ -17,6 +17,7 @@ Motorcycles are very small and hard to see, this is especially problematic in pa
   * speaker (for audio alerts) 
   
 ## Program Flow
+_images obtained from microsoft visio (.vsd) file_
   
 ![image](https://user-images.githubusercontent.com/23226388/62678011-05b38f80-b965-11e9-8270-ae9ec665522a.png) 
 ![image](https://user-images.githubusercontent.com/23226388/62679075-2cbf9080-b968-11e9-87e0-20c983043d74.png)
