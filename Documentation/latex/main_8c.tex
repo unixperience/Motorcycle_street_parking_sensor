@@ -1,0 +1,341 @@
+\hypertarget{main_8c}{}\section{C\+:/\+Users/\+Andrew/\+Documents/u\+Controller/\+Motorcycle\+\_\+street\+\_\+parking\+\_\+sensor/\+Src/main.c File Reference}
+\label{main_8c}\index{C\+:/\+Users/\+Andrew/\+Documents/u\+Controller/\+Motorcycle\+\_\+street\+\_\+parking\+\_\+sensor/\+Src/main.\+c@{C\+:/\+Users/\+Andrew/\+Documents/u\+Controller/\+Motorcycle\+\_\+street\+\_\+parking\+\_\+sensor/\+Src/main.\+c}}
+
+
+\+: Main program body  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cmsis\+\_\+os.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___t___dbg_message}{\+\_\+\+T\+\_\+\+Dbg\+Message}}
+\item 
+struct \mbox{\hyperlink{struct___t___light_thread_args}{\+\_\+\+T\+\_\+\+Light\+Thread\+Args}}
+\item 
+struct \mbox{\hyperlink{struct___t___sensor_thread_args}{\+\_\+\+T\+\_\+\+Sensor\+Thread\+Args}}
+\item 
+struct \mbox{\hyperlink{struct___t___siren_thread_args}{\+\_\+\+T\+\_\+\+Siren\+Thread\+Args}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_a4ecd0f19c5e691bbe614c5c9fba9a7e7}\label{main_8c_a4ecd0f19c5e691bbe614c5c9fba9a7e7}} 
+typedef enum \+\_\+e\+Message\+Priority {\bfseries e\+Message\+Priority}
+\item 
+\mbox{\Hypertarget{main_8c_ac88fc516ea275614127b8386536acc54}\label{main_8c_ac88fc516ea275614127b8386536acc54}} 
+typedef struct \mbox{\hyperlink{struct___t___dbg_message}{\+\_\+\+T\+\_\+\+Dbg\+Message}} {\bfseries T\+\_\+\+Dbg\+Message}
+\item 
+\mbox{\Hypertarget{main_8c_a38159f8667b132563068245f045f730f}\label{main_8c_a38159f8667b132563068245f045f730f}} 
+typedef struct \mbox{\hyperlink{struct___t___light_thread_args}{\+\_\+\+T\+\_\+\+Light\+Thread\+Args}} {\bfseries T\+\_\+\+Light\+Thread\+Args}
+\item 
+\mbox{\Hypertarget{main_8c_adb12fd260c0060f8e787ead1bc0ba911}\label{main_8c_adb12fd260c0060f8e787ead1bc0ba911}} 
+typedef struct \mbox{\hyperlink{struct___t___sensor_thread_args}{\+\_\+\+T\+\_\+\+Sensor\+Thread\+Args}} {\bfseries T\+\_\+\+Sensor\+Thread\+Args}
+\item 
+\mbox{\Hypertarget{main_8c_abbf910a3ad4a12eb60c122eb6ab96eff}\label{main_8c_abbf910a3ad4a12eb60c122eb6ab96eff}} 
+typedef struct \mbox{\hyperlink{struct___t___siren_thread_args}{\+\_\+\+T\+\_\+\+Siren\+Thread\+Args}} {\bfseries T\+\_\+\+Siren\+Thread\+Args}
+\item 
+\mbox{\Hypertarget{main_8c_a8f6321e390838e1726b6d734a99ca23a}\label{main_8c_a8f6321e390838e1726b6d734a99ca23a}} 
+typedef enum \+\_\+e\+R\+T\+O\+S\+Signals {\bfseries e\+R\+T\+O\+S\+Signals}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_ae1ae5233b44a940b34ce2087df3180df}\label{main_8c_ae1ae5233b44a940b34ce2087df3180df}} 
+enum {\bfseries \+\_\+e\+Message\+Priority} \{ \newline
+{\bfseries L\+O\+G\+\_\+\+E\+M\+E\+RG} = 0, 
+{\bfseries L\+O\+G\+\_\+\+A\+L\+E\+RT} = 1, 
+{\bfseries L\+O\+G\+\_\+\+C\+R\+IT} = 2, 
+{\bfseries L\+O\+G\+\_\+\+E\+RR} = 3, 
+\newline
+{\bfseries L\+O\+G\+\_\+\+W\+A\+R\+N\+I\+NG} = 4, 
+{\bfseries L\+O\+G\+\_\+\+N\+O\+T\+I\+CE} = 5, 
+{\bfseries L\+O\+G\+\_\+\+I\+N\+FO} = 6, 
+{\bfseries L\+O\+G\+\_\+\+D\+E\+B\+UG} = 7
+ \}
+\item 
+\mbox{\Hypertarget{main_8c_a30cbf923946d51ba3ba5a06b59a09424}\label{main_8c_a30cbf923946d51ba3ba5a06b59a09424}} 
+enum {\bfseries \+\_\+e\+R\+T\+O\+S\+Signals} \{ \newline
+{\bfseries e\+Sig\+Is\+Right} = 0x00, 
+{\bfseries e\+Sig\+Is\+Left} = 0x01, 
+{\bfseries e\+Sig\+Is\+Light} = 0x02, 
+{\bfseries e\+Sig\+Is\+Siren} = 0x04, 
+\newline
+{\bfseries e\+Sig\+Is\+Sensor} = 0x08
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_ab4b0cc57bc95ee13a108e31c71718240}\label{main_8c_ab4b0cc57bc95ee13a108e31c71718240}} 
+{\bfseries os\+Mail\+Q\+Def} (Uart\+Mailbox, 16, \mbox{\hyperlink{struct___t___dbg_message}{T\+\_\+\+Dbg\+Message}})
+\item 
+void \mbox{\hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a8a52bd3eb5879fbc20b954de2dc83089}{Start\+Task\+Siren\+Sound}} (void const $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the Siren\+Sound thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a350e3926bdf10039e76e93ef032a0089}{Start\+Task\+Light\+Flash}} (void const $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the Light\+Flash thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a31158b40d088a689c2b861f350c450a0}{Start\+Task\+Sensor\+Read}} (void const $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the Sensor\+Read thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a9beb3d51bc10281f57657f937025b121}{Start\+Task\+Uart\+Debug}} (void const $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the Uart\+Debug thread. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a77a2401a35ddd9bd0b8fc28331b81381}\label{main_8c_a77a2401a35ddd9bd0b8fc28331b81381}} 
+void {\bfseries H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+I\+C\+\_\+\+Capture\+Callback} (T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\item 
+void \mbox{\hyperlink{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}} (T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em Period elapsed callback in non blocking mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_a993c8d9b36e1d261809e95d18fb0b044}\label{main_8c_a993c8d9b36e1d261809e95d18fb0b044}} 
+const int {\bfseries M\+A\+X\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+L\+E\+N\+G\+TH} = 32
+\item 
+\mbox{\Hypertarget{main_8c_a583f53ba3530954731666c8fee2c87ac}\label{main_8c_a583f53ba3530954731666c8fee2c87ac}} 
+const uint32\+\_\+t {\bfseries S\+U\+P\+E\+R\+S\+O\+N\+I\+C\+\_\+s\+E\+R\+N\+S\+O\+R\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+R\+A\+N\+G\+E\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+MS} = 27
+\item 
+\mbox{\Hypertarget{main_8c_a125dda0a8c25ff0d8ccf5c3d9ecbbf30}\label{main_8c_a125dda0a8c25ff0d8ccf5c3d9ecbbf30}} 
+const float {\bfseries S\+P\+E\+E\+D\+\_\+\+O\+F\+\_\+\+S\+O\+U\+N\+D\+\_\+25\+C\+\_\+\+C\+MpS} = (346$\ast$100)
+\item 
+\mbox{\Hypertarget{main_8c_ab56a135f377c31b7c7bbac7e896ba0f8}\label{main_8c_ab56a135f377c31b7c7bbac7e896ba0f8}} 
+const uint32\+\_\+t {\bfseries M\+I\+N\+\_\+\+D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+C\+L\+K\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+CM} = 60
+\item 
+\mbox{\Hypertarget{main_8c_a5a213039167527c8077560636d77e6fe}\label{main_8c_a5a213039167527c8077560636d77e6fe}} 
+const uint32\+\_\+t {\bfseries T\+H\+R\+E\+S\+H\+O\+L\+D\+\_\+\+V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+C\+H\+A\+N\+GE} = 10
+\item 
+\mbox{\Hypertarget{main_8c_a80da62d0eae45f5ffa50851540a00afd}\label{main_8c_a80da62d0eae45f5ffa50851540a00afd}} 
+const uint8\+\_\+t {\bfseries M\+A\+X\+\_\+\+S\+O\+N\+A\+R\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+MS} = 33
+\item 
+\mbox{\Hypertarget{main_8c_aa25a57382819e79fbde3687939c0fd0b}\label{main_8c_aa25a57382819e79fbde3687939c0fd0b}} 
+D\+A\+C\+\_\+\+Handle\+Type\+Def {\bfseries hdac1}
+\item 
+\mbox{\Hypertarget{main_8c_a5c3f9dccaa7cebcc70e1657af9e5e5dc}\label{main_8c_a5c3f9dccaa7cebcc70e1657af9e5e5dc}} 
+U\+A\+R\+T\+\_\+\+Handle\+Type\+Def {\bfseries hlpuart1}
+\item 
+\mbox{\Hypertarget{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62}\label{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim3}
+\item 
+\mbox{\Hypertarget{main_8c_ae4b8faf50eeb07577983d36e4c3894b8}\label{main_8c_ae4b8faf50eeb07577983d36e4c3894b8}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim14}
+\item 
+\mbox{\Hypertarget{main_8c_a7a4110103a95e6c5600f2568e3800e59}\label{main_8c_a7a4110103a95e6c5600f2568e3800e59}} 
+os\+Thread\+Id {\bfseries Siren\+Sound\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_a8dc1ae74899a20ea81fd482c6ccb06ea}\label{main_8c_a8dc1ae74899a20ea81fd482c6ccb06ea}} 
+os\+Thread\+Id {\bfseries Light\+Flash\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_a6e34270c3ffd43d42445c56492882ce2}\label{main_8c_a6e34270c3ffd43d42445c56492882ce2}} 
+os\+Thread\+Id {\bfseries Sensor\+Read\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_ab1cb7251b27eaf60ff6d279f35d83f21}\label{main_8c_ab1cb7251b27eaf60ff6d279f35d83f21}} 
+os\+Thread\+Id {\bfseries Uart\+Debug\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_ae96b57e78d6040b609329ef63370a70b}\label{main_8c_ae96b57e78d6040b609329ef63370a70b}} 
+os\+Thread\+Id {\bfseries Right\+Siren\+Sound\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_ae384caa23518602e9f07970aaa406cae}\label{main_8c_ae384caa23518602e9f07970aaa406cae}} 
+os\+Thread\+Id {\bfseries Right\+Light\+Flash\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_a6e154a863ca3d7adbd56ed62641e10f1}\label{main_8c_a6e154a863ca3d7adbd56ed62641e10f1}} 
+os\+Thread\+Id {\bfseries Right\+Sensor\+Read\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_a45aadfa9e80a23a942a2efeb05e2690f}\label{main_8c_a45aadfa9e80a23a942a2efeb05e2690f}} 
+os\+Mail\+Q\+Id {\bfseries Uart\+Mailbox}
+\item 
+\mbox{\Hypertarget{main_8c_a77f0e7580d3b44cca49fa93650df9486}\label{main_8c_a77f0e7580d3b44cca49fa93650df9486}} 
+uint8\+\_\+t {\bfseries gau8\+\_\+\+N\+U\+M\+\_\+\+T\+I\+M3\+\_\+\+I\+C\+P\+\_\+\+R\+E\+A\+D\+I\+N\+G\+S\+\_\+\+C\+H\+AN} \mbox{[}2\mbox{]} = \{0,0\}
+\item 
+\mbox{\Hypertarget{main_8c_a621f5911c8fc02e0d3cace15a6ae95e9}\label{main_8c_a621f5911c8fc02e0d3cace15a6ae95e9}} 
+uint16\+\_\+t {\bfseries gau16\+\_\+\+T\+I\+M3\+\_\+\+I\+C\+P\+\_\+\+A\+V\+E\+R\+A\+G\+E\+\_\+\+C\+H\+AN} \mbox{[}2\mbox{]} = \{0,0\}
+\item 
+\mbox{\Hypertarget{main_8c_aa474582472561f54dd44e97161c33705}\label{main_8c_aa474582472561f54dd44e97161c33705}} 
+uint32\+\_\+t {\bfseries gu32\+\_\+\+T\+I\+M3\+\_\+\+I\+C\+P\+\_\+\+S\+U\+M\+\_\+\+C\+H\+AN} \mbox{[}2\mbox{]} = \{0,0\}
+\item 
+\mbox{\Hypertarget{main_8c_a89938ac412e8c4aaaccb8bd585c7b975}\label{main_8c_a89938ac412e8c4aaaccb8bd585c7b975}} 
+uint16\+\_\+t {\bfseries gu16\+\_\+\+T\+I\+M3\+\_\+\+C\+U\+R\+R\+\_\+\+I\+C\+P\+\_\+\+C\+H\+AN} \mbox{[}2\mbox{]} = \{0,0\}
+\item 
+\mbox{\Hypertarget{main_8c_a637b6ebd1f76631bbe15937bf772a9cc}\label{main_8c_a637b6ebd1f76631bbe15937bf772a9cc}} 
+uint16\+\_\+t {\bfseries gu16\+\_\+\+T\+I\+M3\+\_\+\+P\+R\+E\+V\+\_\+\+I\+C\+P\+\_\+\+C\+H\+AN} \mbox{[}2\mbox{]} = \{0,0\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\+: Main program body 
+
+This notice applies to any and all portions of this file that are not between comment pairs U\+S\+ER C\+O\+DE B\+E\+G\+IN and U\+S\+ER C\+O\+DE E\+ND. Other portions of this file, whether inserted by the user or by software development tools are owned by their respective copyright owners.
+
+C\+O\+P\+Y\+R\+I\+G\+H\+T(c) 2019 S\+T\+Microelectronics
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\+:
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of S\+T\+Microelectronics nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+T\+H\+IS S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED BY T\+HE C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS A\+ND C\+O\+N\+T\+R\+I\+B\+U\+T\+O\+RS \char`\"{}\+A\+S I\+S\char`\"{} A\+ND A\+NY E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED W\+A\+R\+R\+A\+N\+T\+I\+ES, I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, T\+HE I\+M\+P\+L\+I\+ED W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY A\+ND F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+RE D\+I\+S\+C\+L\+A\+I\+M\+ED. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+ER OR C\+O\+N\+T\+R\+I\+B\+U\+T\+O\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY D\+I\+R\+E\+CT, I\+N\+D\+I\+R\+E\+CT, I\+N\+C\+I\+D\+E\+N\+T\+AL, S\+P\+E\+C\+I\+AL, E\+X\+E\+M\+P\+L\+A\+RY, OR C\+O\+N\+S\+E\+Q\+U\+E\+N\+T\+I\+AL D\+A\+M\+A\+G\+ES (I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, P\+R\+O\+C\+U\+R\+E\+M\+E\+NT OF S\+U\+B\+S\+T\+I\+T\+U\+TE G\+O\+O\+DS OR S\+E\+R\+V\+I\+C\+ES; L\+O\+SS OF U\+SE, D\+A\+TA, OR P\+R\+O\+F\+I\+TS; OR B\+U\+S\+I\+N\+E\+SS I\+N\+T\+E\+R\+R\+U\+P\+T\+I\+ON) H\+O\+W\+E\+V\+ER C\+A\+U\+S\+ED A\+ND ON A\+NY T\+H\+E\+O\+RY OF L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN C\+O\+N\+T\+R\+A\+CT, S\+T\+R\+I\+CT L\+I\+A\+B\+I\+L\+I\+TY, OR T\+O\+RT (I\+N\+C\+L\+U\+D\+I\+NG N\+E\+G\+L\+I\+G\+E\+N\+CE OR O\+T\+H\+E\+R\+W\+I\+SE) A\+R\+I\+S\+I\+NG IN A\+NY W\+AY O\+UT OF T\+HE U\+SE OF T\+H\+IS S\+O\+F\+T\+W\+A\+RE, E\+V\+EN IF A\+D\+V\+I\+S\+ED OF T\+HE P\+O\+S\+S\+I\+B\+I\+L\+I\+TY OF S\+U\+CH D\+A\+M\+A\+GE. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a1730ffe1e560465665eb47d9264826f9}\label{main_8c_a1730ffe1e560465665eb47d9264826f9}} 
+\index{main.\+c@{main.\+c}!Error\+\_\+\+Handler@{Error\+\_\+\+Handler}}
+\index{Error\+\_\+\+Handler@{Error\+\_\+\+Handler}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Error\+\_\+\+Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}\label{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}} 
+\index{main.\+c@{main.\+c}!H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}}
+\index{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback()}{HAL\_TIM\_PeriodElapsedCallback()}}
+{\footnotesize\ttfamily void H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback (\begin{DoxyParamCaption}\item[{T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+
+Period elapsed callback in non blocking mode. 
+
+\begin{DoxyNote}{Note}
+This function is called when T\+I\+M2 interrupt took place, inside H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+I\+R\+Q\+Handler(). It makes a direct call to H\+A\+L\+\_\+\+Inc\+Tick() to increment a global variable \char`\"{}uw\+Tick\char`\"{} used as application time base. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & \+: T\+IM handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a350e3926bdf10039e76e93ef032a0089}\label{main_8c_a350e3926bdf10039e76e93ef032a0089}} 
+\index{main.\+c@{main.\+c}!Start\+Task\+Light\+Flash@{Start\+Task\+Light\+Flash}}
+\index{Start\+Task\+Light\+Flash@{Start\+Task\+Light\+Flash}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Start\+Task\+Light\+Flash()}{StartTaskLightFlash()}}
+{\footnotesize\ttfamily void Start\+Task\+Light\+Flash (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the Light\+Flash thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a31158b40d088a689c2b861f350c450a0}\label{main_8c_a31158b40d088a689c2b861f350c450a0}} 
+\index{main.\+c@{main.\+c}!Start\+Task\+Sensor\+Read@{Start\+Task\+Sensor\+Read}}
+\index{Start\+Task\+Sensor\+Read@{Start\+Task\+Sensor\+Read}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Start\+Task\+Sensor\+Read()}{StartTaskSensorRead()}}
+{\footnotesize\ttfamily void Start\+Task\+Sensor\+Read (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the Sensor\+Read thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & b\+Is\+Left$<$bool$>$ if this thread is for the left (or right) set of sensors \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a8a52bd3eb5879fbc20b954de2dc83089}\label{main_8c_a8a52bd3eb5879fbc20b954de2dc83089}} 
+\index{main.\+c@{main.\+c}!Start\+Task\+Siren\+Sound@{Start\+Task\+Siren\+Sound}}
+\index{Start\+Task\+Siren\+Sound@{Start\+Task\+Siren\+Sound}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Start\+Task\+Siren\+Sound()}{StartTaskSirenSound()}}
+{\footnotesize\ttfamily void Start\+Task\+Siren\+Sound (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the Siren\+Sound thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a9beb3d51bc10281f57657f937025b121}\label{main_8c_a9beb3d51bc10281f57657f937025b121}} 
+\index{main.\+c@{main.\+c}!Start\+Task\+Uart\+Debug@{Start\+Task\+Uart\+Debug}}
+\index{Start\+Task\+Uart\+Debug@{Start\+Task\+Uart\+Debug}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Start\+Task\+Uart\+Debug()}{StartTaskUartDebug()}}
+{\footnotesize\ttfamily void Start\+Task\+Uart\+Debug (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the Uart\+Debug thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{main_8c_a70af21c671abfcc773614a9a4f63d920}\label{main_8c_a70af21c671abfcc773614a9a4f63d920}} 
+\index{main.\+c@{main.\+c}!System\+Clock\+\_\+\+Config@{System\+Clock\+\_\+\+Config}}
+\index{System\+Clock\+\_\+\+Config@{System\+Clock\+\_\+\+Config}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{System\+Clock\+\_\+\+Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Configure the main internal regulator output voltage
+
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+
+Initializes the peripherals clocks
